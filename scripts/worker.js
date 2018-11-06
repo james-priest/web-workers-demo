@@ -1,6 +1,6 @@
 importScripts('imageManips.js');
 
-this.onmessage = function(e) {
+this.onmessage = function (e) {
   var imageData = e.data.imageData;
   var type = e.data.type;
 
@@ -17,13 +17,14 @@ this.onmessage = function(e) {
       imageData.data[i * 4 + 2] = pixel[2];
       imageData.data[i * 4 + 3] = pixel[3];
     }
-    postMessage(imageData);
+    self.postMessage(imageData);
   } catch (e) {
-    function ManipulationException(message) {
-      this.name = "ManipulationException";
-      this.message = message;
-    };
     throw new ManipulationException('Image manipulation error');
-    postMessage(undefined);
+    // self.postMessage(undefined);
   }
+};
+
+function ManipulationException(message) {
+  this.name = "ManipulationException";
+  this.message = message;
 }
