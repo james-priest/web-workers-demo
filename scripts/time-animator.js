@@ -7,7 +7,7 @@
   function init() {
     canvas = document.createElement( 'canvas' );
     canvas.width = 400;
-    canvas.height = 200;
+    canvas.height = 90;
     context = canvas.getContext( '2d' );
     document.querySelector('#time-animation').appendChild( canvas );
   }
@@ -95,18 +95,18 @@
 
     context.font = '24px sans-serif';
     context.fillStyle = 'rgba(41,72,96,1)';
-    context.fillText("Date: " + dateString, 0, 50);
-    context.fillText("Time: " + timeString, 0, 75);
+    context.fillText("Date: " + dateString, 0, 25);
+    context.fillText("Time: " + timeString, 0, 50);
 
     // fade out the "Jank Spotted" timer after 5 secs
     if (changeTime !== 0 && now - changeTime > 5000 && alpha > 0) {
       alpha = alpha - 0.05;
     }
 
-    context.font = '36px sans-serif';
-    context.fillStyle = 'rgba(41,72,96,' + alpha + ')';
+    context.font = '24px sans-serif';
+    context.fillStyle = 'rgba(210,20,45,' + alpha + ')';
     if (displayTime > 0) {
-      context.fillText("Jank spotted: " + displayTime + "ms", 0, 125);
+      context.fillText("Jank spotted: " + displayTime + "ms", 0, 80);
     }
 
     // save the data about this frame for future comparison

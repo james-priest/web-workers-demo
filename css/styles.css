@@ -1,13 +1,18 @@
 body {
   font-family: 'Slabo 27px', serif;
-  margin: 5px;
+  margin: 10px;
 }
-canvas {
-  margin-top: 5px;
+h2 {
+  margin: 16px 0 10px;
+}
+#image-manipulator canvas {
+  margin-top: 16px;
+  border: 1px solid #aaa;
 }
 p.header {
   font-size: 1.5em;
   text-align: center;
+  margin: 0;
 }
 img.udacity {
   width: 2em;
@@ -16,10 +21,11 @@ img.udacity {
 }
 .container {
   display: flex;
+  flex-direction: column;
 }
 .half {
-  width: 50%;
-  display: wrap;
+  /* width: 50%; */
+  /* display: wrap; */
 }
 #pic {
   max-width: 300px;
@@ -37,4 +43,16 @@ img.udacity {
 }
 #image {
   width: 100%;
+}
+#time-animation canvas {
+  margin: 0 20px;
+}
+#buttons {
+  margin: 0 20px;
+}
+#image-manipulator h2 {
+  margin: 0 0 16px;
+}
+#imageLoader {
+  margin-bottom: 6px;
 }
