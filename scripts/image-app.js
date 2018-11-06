@@ -7,11 +7,19 @@
   var ctx = canvas.getContext('2d');
 
   // Add web worker
-  var w = new Worker('scripts/worker.js');
-  w.onmessage = (e) => {
+  var imageWorker = new Worker('scripts/worker.js');
+  imageWorker.onmessage = (e) => {
     toggleButtonsAbledness();
     return ctx.putImageData(e.data, 0, 0);
   };
+  imageWorker.onerror = (e) => {
+    function WorkerException(message) {
+      this.name = 'WorkerException';
+      this.message = message;
+    }
+    throw new WorkerException('Worker error.');
+  };
+ 
 
   function handleImage(e){
     var reader = new FileReader();
@@ -42,15 +50,15 @@
   }
 
   function manipulateImage(type) {
-    var a, b, g, i, imageData, j, length, pixel, r, ref;
+    var imageData;
     imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
     toggleButtonsAbledness();
 
     // Hint! This is where you should post messages to the web worker and
     // receive messages from the web worker.
-    let data = { imageData, type };
-    w.postMessage(data);
+    let data = { 'imageData': imageData, 'type': type };
+    imageWorker.postMessage(data);
 
 
     // length = imageData.data.length / 4;
